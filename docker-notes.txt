@@ -1,0 +1,15 @@
+
+#Start and import of MySQL
+
+docker run --name wvfbg-mysql -e MYSQL_ROOT_PASSWORD='master' -p 3306:3306 -d \
+  -v /Users/christian.johannsen/Desktop/Development/wvfbg:/var/lib/mysql \
+dwv-mysql:5.7.21
+
+docker exec -i  mysql -u root -pmaster -e "CREATE DATABASE wvfbg"
+docker exec -i  mysql -uroot -pmaster wvfbg < /Users/christian.johannsen/Desktop/Development/wvfbg/wvfbg.sql
+
+#Start and mount of Drupal
+
+docker run --name wvfbg-drupal -p 8080:80 -d \
+  -v /Users/christian.johannsen/Desktop/Development/wvfbg/ferrybuildinggallery.ca/www:/opt/drupal/web \
+dwv-drupal:8.9.7

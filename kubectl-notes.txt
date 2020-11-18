@@ -1,0 +1,5 @@
+
+kubectl exec -i POD -- mysql -u root -pmaster -e "CREATE DATABASE wvfbg"
+kubectl exec -i POD -- mysql -u root -pmaster wvfbg < ../images/mysql/wvfbg.sql
+
+kubectl exec -it drupal-69cbdcd78c-svsg6 -c copy -- /bin/sh
